@@ -18,10 +18,10 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-//
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+ const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+ const secret = require("./secret.json");
+ const secretTestnet = require("./secret.testnet.json");
 
 module.exports = {
   /**
@@ -41,6 +41,12 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
+    rinkeby: {
+      provider: () => new HDWalletProvider(secretTestnet.mnemonic, `wss://rinkeby.infura.io/ws/v3/${secret.infuraKey}`),
+      network_id: 4, // rinkeby's id
+      skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+      networkCheckTimeout: 999999,
+    },
     // development: {
     //  host: "127.0.0.1",     // Localhost (default: none)
     //  port: 8545,            // Standard Ethereum port (default: none)
@@ -92,6 +98,14 @@ module.exports = {
       // }
     }
   },
+
+  plugins: [
+    'truffle-plugin-verify'
+  ],
+
+  api_keys: {
+    etherscan: secret.etherscanApiKey
+  }
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be

@@ -24,6 +24,7 @@
     "@openzeppelin/test-helpers": "^0.5.15",
     "@truffle/hdwallet-provider": "^1.7.0",
     "truffle": "^5.4.21",
-    "truffle-flattener": "^1.5.0"
+    "truffle-flattener": "^1.5.0",
+    "truffle-plugin-verify": "^0.5.18"
   }
 }

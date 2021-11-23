@@ -1,3 +1,7 @@
 build
 node_modules
+
+secret.json
+secret.*.json
+
 package-lock.json
